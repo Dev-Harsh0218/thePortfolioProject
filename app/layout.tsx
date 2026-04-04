@@ -1,15 +1,29 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-    subsets: ["latin"],
-    variable: "--font-manrope",
-})
-
 export const metadata: Metadata = {
-  title: "Harsh Bhardwaj | Software Engineer",
-  description: "Portfolio of Harsh Bhardwaj, a software engineer building thoughtful digital experiences.",
+  metadataBase: new URL("https://yourdomain.com"),
+  title: {
+    default: "Harsh Bhardwaj | Software Engineer",
+    template: "%s | Harsh Bhardwaj",
+  },
+  description:
+    "Portfolio of Harsh Bhardwaj, a software engineer building thoughtful digital experiences.",
+  openGraph: {
+    title: "Harsh Bhardwaj | Software Engineer",
+    description:
+      "Portfolio of Harsh Bhardwaj, a software engineer building thoughtful digital experiences.",
+    url: "https://yourdomain.com",
+    siteName: "Harsh Bhardwaj Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Harsh Bhardwaj | Software Engineer",
+    description:
+      "Portfolio of Harsh Bhardwaj, a software engineer building thoughtful digital experiences.",
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={manrope.variable}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
