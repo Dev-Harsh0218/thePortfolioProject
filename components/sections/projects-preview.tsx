@@ -86,6 +86,22 @@ export function ProjectsPreview() {
     };
   }, [activeProject]);
 
+  useEffect(() => {
+    if (!activeProject) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveProject(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeProject]);
+
   return (
     <Section id="projects" className="pt-[52px]">
       <Reveal>
@@ -192,7 +208,12 @@ export function ProjectsPreview() {
             className="absolute inset-0 bg-[rgba(18,20,23,0.42)] backdrop-blur-md"
           />
 
-          <div className="relative z-10 w-full max-w-[1040px] overflow-hidden rounded-[36px] border border-white/40 bg-[rgba(248,245,238,0.94)] shadow-[0_32px_90px_rgba(18,20,23,0.24)] backdrop-blur-xl">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+            className="relative z-10 w-full max-w-[1040px] overflow-hidden rounded-[36px] border border-white/40 bg-[rgba(248,245,238,0.94)] shadow-[0_32px_90px_rgba(18,20,23,0.24)] backdrop-blur-xl"
+          >
             <div className="grid gap-0 min-[900px]:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
               <div className="p-7 max-[720px]:p-5">
                 <div className="mb-5 flex items-center justify-between gap-3">
@@ -225,7 +246,10 @@ export function ProjectsPreview() {
                   </span>
                 </div>
 
-                <h3 className="max-w-[14ch] text-[clamp(2rem,5vw,3.7rem)] font-semibold leading-[0.98] tracking-[-0.05em] text-[#121417]">
+                <h3
+                  id="project-modal-title"
+                  className="max-w-[14ch] text-[clamp(2rem,5vw,3.7rem)] font-semibold leading-[0.98] tracking-[-0.05em] text-[#121417]"
+                >
                   {activeProject.title}
                 </h3>
 

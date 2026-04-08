@@ -1,6 +1,7 @@
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { siteConfig } from "@/lib/site-config";
 
 export function Contact() {
   return (
@@ -24,11 +25,11 @@ export function Contact() {
           </div>
 
           <div className="flex shrink-0 flex-wrap gap-[14px] max-[980px]:justify-start">
-            <Button href="mailto:you@example.com">Email me</Button>
-            <Button href="https://github.com/" variant="secondary">
+            <Button href={siteConfig.email}>Email me</Button>
+            <Button href={siteConfig.github} variant="secondary">
               GitHub
             </Button>
-            <Button href="https://linkedin.com/" variant="secondary">
+            <Button href={siteConfig.linkedin} variant="secondary">
               LinkedIn
             </Button>
           </div>

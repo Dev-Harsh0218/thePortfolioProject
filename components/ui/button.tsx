@@ -20,8 +20,15 @@ export function Button({
       "border-black/[0.08] bg-white/[0.9] text-[#121417]",
   };
 
+  const isExternal = href.startsWith("http");
+
   return (
-    <a href={href} className={`${baseStyles} ${variants[variant]}`}>
+    <a
+      href={href}
+      className={`${baseStyles} ${variants[variant]}`}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noreferrer" : undefined}
+    >
       {children}
     </a>
   );
